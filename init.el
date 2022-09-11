@@ -7,10 +7,12 @@
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
 
+(require 'use-package)
+
 ;;; tsinghua mirrors
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-			 ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 (package-initialize) ;; You might already have this line
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -18,7 +20,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; auto-complete
-(ac-config-default)
+;;;(ac-config-default)
+
+;;; company
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;; neotree
 (add-to-list 'load-path "~/.emacs.d/3Party/neotree")
@@ -43,3 +48,22 @@
 
 ;;; rjsx-mode
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+
+;;; lsp-mode
+(require 'lsp-mode)
+
+(add-hook 'javascript-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'lsp)
+(add-hook 'c-mode-hook #'lsp
+(add-hook 'cpp-mode-hook #'lsp)
+
+;;; lsp-ui
+(use-package lsp-ui)
+
+;;; flycheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+
