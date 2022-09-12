@@ -1,4 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Wesley's simple config
+;;; 2022-09-12
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;; Basic Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq inhibit-startup-message t)
@@ -6,6 +10,7 @@
 (setq make-backup-files nil)
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
+(window-numbering-mode) ;; window-numbering M+1 M+2... 
 
 (require 'use-package)
 
@@ -15,7 +20,6 @@
 			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 (package-initialize) ;; You might already have this line
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Advanced Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -26,12 +30,11 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;;; neotree
-(add-to-list 'load-path "~/.emacs.d/3Party/neotree")
+;;;(add-to-list 'load-path "~/.emacs.d/3Party/neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
 ;;; js2-mode
-
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
@@ -55,15 +58,16 @@
 (add-hook 'javascript-mode-hook #'lsp)
 (add-hook 'python-mode-hook #'lsp)
 (add-hook 'java-mode-hook #'lsp)
-(add-hook 'c-mode-hook #'lsp
-(add-hook 'cpp-mode-hook #'lsp)
+(add-hook 'c-mode-hook #'lsp)
+(add-hook 'c++-mode-hook #'lsp)
+(add-hook 'rust-mode-hook #'lsp)
 
 ;;; lsp-ui
 (use-package lsp-ui)
+;(lsp-ui-sideline-show-diagnostics-mode)
 
 ;;; flycheck
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
-
 
