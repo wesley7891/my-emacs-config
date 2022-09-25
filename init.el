@@ -53,21 +53,31 @@
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
 ;;; lsp-mode
-(require 'lsp-mode)
+;;(require 'lsp-mode)
 
-(add-hook 'javascript-mode-hook #'lsp)
-(add-hook 'python-mode-hook #'lsp)
-(add-hook 'java-mode-hook #'lsp)
-(add-hook 'c-mode-hook #'lsp)
-(add-hook 'c++-mode-hook #'lsp)
-(add-hook 'rust-mode-hook #'lsp)
+;;(add-hook 'javascript-mode-hook #'lsp)
+;;(add-hook 'python-mode-hook #'lsp)
+;;(add-hook 'java-mode-hook #'lsp)
+;;(add-hook 'c-mode-hook #'lsp)
+;;(add-hook 'c++-mode-hook #'lsp)
+;;(add-hook 'rust-mode-hook #'lsp)
 
 ;;; lsp-ui
-(use-package lsp-ui)
+;;(use-package lsp-ui)
 ;(lsp-ui-sideline-show-diagnostics-mode)
 
 ;;; flycheck
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+;;(use-package flycheck
+;;  :ensure t
+;;  :init (global-flycheck-mode))
 
+;;; org-mode
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+(setq org-agenda-files '("/home/wesley/org-notes/gtd/inbox.org"
+			 "/home/wesley/org-notes/gtd/gtd.org"
+			 "/home/wesley/org-notes/gtd/tickler.org"))
+
+(setq org-capture-templates '(("t" "Todo [inbox]" entry
+			       (file+headline) "/home/wesley/org-notes/gtd/inbox.org" "Tasks")))
