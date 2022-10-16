@@ -33,6 +33,7 @@
 ;;;(add-to-list 'load-path "~/.emacs.d/3Party/neotree")
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+(setq-default neo-show-hidden-files t)
 
 ;;; js2-mode
 (require 'js2-mode)
@@ -81,3 +82,24 @@
 
 (setq org-capture-templates '(("t" "Todo [inbox]" entry
 			       (file+headline) "/home/wesley/org-notes/gtd/inbox.org" "Tasks")))
+
+;;; rust-mode
+(require 'rust-mode)
+
+;;; handlebars
+(require 'handlebars-mode)
+
+;;; keyfreq
+;;; keyfreq-show to see how many times you used a command
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
+;;; smex
+;;; smex is a tool to show many commands
+(require 'smex)
+(smex-initialize)
+
+;;; bind some keys
+(global-set-key (kbd "M-x") 'smex)
+;;(global-set-key (kbd "M-x") 'smex-major-mode-commands)
