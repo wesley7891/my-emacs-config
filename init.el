@@ -3,22 +3,23 @@
 ;;; 2022-09-12
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; tsinghua mirrors
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+(package-initialize) ;; You might already have this line
+
 ;;; Basic Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (setq make-backup-files nil)
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
 (window-numbering-mode) ;; window-numbering M+1 M+2... 
 
 (require 'use-package)
-
-;;; tsinghua mirrors
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-(package-initialize) ;; You might already have this line
 
 ;;; Advanced Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,17 +55,17 @@
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
 ;;; lsp-mode
-;;(require 'lsp-mode)
+(require 'lsp-mode)
 
 ;;(add-hook 'javascript-mode-hook #'lsp)
 ;;(add-hook 'python-mode-hook #'lsp)
 ;;(add-hook 'java-mode-hook #'lsp)
-;;(add-hook 'c-mode-hook #'lsp)
-;;(add-hook 'c++-mode-hook #'lsp)
+(add-hook 'c-mode-hook #'lsp)
+(add-hook 'c++-mode-hook #'lsp)
 ;;(add-hook 'rust-mode-hook #'lsp)
 
 ;;; lsp-ui
-;;(use-package lsp-ui)
+(use-package lsp-ui)
 ;(lsp-ui-sideline-show-diagnostics-mode)
 
 ;;; flycheck
