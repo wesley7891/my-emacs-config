@@ -17,6 +17,8 @@
 (setq make-backup-files nil)
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
+(global-hl-line-mode)
+
 (window-numbering-mode) ;; window-numbering M+1 M+2... 
 
 (require 'use-package)
@@ -58,20 +60,35 @@
 (require 'lsp-mode)
 
 ;;(add-hook 'javascript-mode-hook #'lsp)
-;;(add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp)
 ;;(add-hook 'java-mode-hook #'lsp)
 (add-hook 'c-mode-hook #'lsp)
 (add-hook 'c++-mode-hook #'lsp)
 ;;(add-hook 'rust-mode-hook #'lsp)
 
 ;;; lsp-ui
-(use-package lsp-ui)
-;(lsp-ui-sideline-show-diagnostics-mode)
+(use-package lsp-ui
+  :after lsp-mode
+  :bind
+  (("C-c d" . lsp-ui-peek-find-definitions)
+   ("C-c r" . lsp-ui-peek-find-references))
+  :custom
+  ((lsp-ui-sideline-show-diagnostics t)
+   (lsp-ui-sideline-show-hover t)
+   (lsp-ui-sideline-show-code-actions t)
+   (lsp-ui-sideline-delay 0.2)
+   (lsp-ui-sideline-update-mode nil)
+   (lsp-ui-doc-enable t)
+   (lsp-ui-doc-position 'at-point)
+   (lsp-ui-doc-delay 0.2)
+   (lsp-ui-doc-show-with-cursor t)
+   (lsp-ui-doc-show-with-mouse nil)
+   (lsp-ui-imenu-window-width 30)
+   (lsp-ui-imenu-custom-mode-line-format t)
+   (lsp-ui-imenu-auto-reference t)))
 
 ;;; flycheck
-;;(use-package flycheck
-;;  :ensure t
-;;  :init (global-flycheck-mode))
+(global-flycheck-mode)
 
 ;;; org-mode
 (global-set-key (kbd "C-c l") #'org-store-link)
