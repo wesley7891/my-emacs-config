@@ -3,11 +3,34 @@
 ;;; 2022-09-12
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq package-list '(window-numbering
+		     use-package
+		     neotree
+		     js2-mode
+		     js2-refactor
+		     xref-js2
+		     lsp-mode
+		     company
+		     lsp-ui
+		     flycheck
+		     rust-mode
+		     smex
+		     handlebars-mode
+		     keyfreq
+		     ))
+
 ;;; tsinghua mirrors
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 (package-initialize) ;; You might already have this line
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;;; Install the packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;;; Basic Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -17,7 +40,7 @@
 (setq make-backup-files nil)
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
-(global-hl-line-mode)
+;;(global-hl-line-mode)
 
 (window-numbering-mode) ;; window-numbering M+1 M+2... 
 
@@ -116,8 +139,8 @@
 ;;; smex
 ;;; smex is a tool to show many commands
 (require 'smex)
+;;; smex
+;;; smex is a tool to show many commands
+(require 'smex)
 (smex-initialize)
 
-;;; bind some keys
-(global-set-key (kbd "M-x") 'smex)
-;;(global-set-key (kbd "M-x") 'smex-major-mode-commands)
