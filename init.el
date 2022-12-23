@@ -1,8 +1,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Wesley's simple config
-;;; 2022-09-12
+;;; @name: Wesley's emacs configuration
+;;; @date: 2022/09/12
+;;; @desc: 亲自维护 亲自部署
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;
+;;; 安装的packages
 (setq package-list '(window-numbering
 		     use-package
 		     neotree
@@ -19,40 +22,46 @@
 		     keyfreq
 		     ))
 
-;;; tsinghua mirrors
+;;; 
+;;; 清华源
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 			 ("org-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-(package-initialize) ;; You might already have this line
+(package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 
-;;; Install the packages
+;;;
+;;; 检查package-list里面是否已经安装，如果没有的话，使用package-install进行安装
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-;;; Basic Config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; 基础配置，如工具栏隐藏，startup message等
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (setq make-backup-files nil)
 (global-display-line-numbers-mode)
 (blink-cursor-mode 0)
-;;(global-hl-line-mode)
+(global-hl-line-mode)
 
-(window-numbering-mode) ;; window-numbering M+1 M+2... 
 
+
+
+
+;;; 
+;;; 高级配置
+
+;;; use-package
 (require 'use-package)
 
-;;; Advanced Config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; window-numbering - 用于切换多个窗口 快捷键 M+1 M+2..
+(window-numbering-mode)
 
-;;; auto-complete
-;;;(ac-config-default)
-
-;;; company
+;;; company - 自动补全
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;;; neotree
@@ -79,7 +88,8 @@
 ;;; rjsx-mode
 (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
-;;; lsp-mode
+;;;
+;;; lsp-mode - language server protocol
 (require 'lsp-mode)
 
 ;;(add-hook 'javascript-mode-hook #'lsp)
