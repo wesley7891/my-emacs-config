@@ -20,6 +20,8 @@
 		     smex
 		     handlebars-mode
 		     keyfreq
+		     yasnippet
+		     projectile
 		     ))
 
 ;;; 
@@ -63,6 +65,15 @@
 
 ;;; company - 自动补全
 (add-hook 'after-init-hook 'global-company-mode)
+
+;;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;;; projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;; neotree
 ;;;(add-to-list 'load-path "~/.emacs.d/3Party/neotree")
