@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+def check_directory():
+    pass
+
+def install():
+    
+    while True:
+        print('Do you want to update emacs config file?[yY/Nn]')
+        x = str(input())
+        if x == "Y" or x == 'y':
+            check_directory()
+        elif x == 'N' or x == 'n':
+            print("Goodbye!")
+            break
+        else:
+            pass
+            
+    
+
+if __name__ == '__main__':
+    install()
